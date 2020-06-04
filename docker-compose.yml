@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    container_name: "auth-api"
+    ports:
+      - "3001:3000"
+    restart: on-failure
+    environment:
+      - APP_SECRET=${APP_SECRET}
+      - DB_HOST=postgre-auth
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+    networks:
+      - auth-network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgre-auth
+    restart: on-failure
+    volumes:
+      - postgre-auth-data:/data
+    networks:
+      - auth-network
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASS}
+
+volumes:
+  postgre-auth-data:
+
+networks:
+  auth-network:

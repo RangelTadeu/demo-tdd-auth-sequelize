@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server",
+    "start": "yarn sequelize db:create && yarn sequelize db:migrate && node src/server",
     "dev": "nodemon src/server.js --ignore __tests__",
     "pretest": "NODE_ENV=test yarn sequelize db:migrate",
     "test": "NODE_ENV=test jest",

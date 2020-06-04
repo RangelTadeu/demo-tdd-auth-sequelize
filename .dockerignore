@@ -1,0 +1,10 @@
+node_modules
+__tests__
+.env
+.git
+.cache
+.editorconfig
+.env.test
+.eslintrc.json
+jest.config.js
+README.md
